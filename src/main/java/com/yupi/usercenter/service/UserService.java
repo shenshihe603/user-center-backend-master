@@ -1,7 +1,10 @@
 package com.yupi.usercenter.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yupi.usercenter.model.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yupi.usercenter.model.domain.request.UserSearchRequest;
+import com.yupi.usercenter.model.domain.request.UserUpdatePasswordRequest;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -48,4 +51,26 @@ public interface UserService extends IService<User> {
      * @return
      */
     int userLogout(HttpServletRequest request);
+    /**
+     * 获取当前登录用户
+     *
+     * @param request
+     * @return
+     */
+    User getLoginUser(HttpServletRequest request);
+
+    /**
+     * 修改密码
+     *
+     * @param updatePasswordRequest
+     * @param request
+     */
+    boolean updateUserPassword(UserUpdatePasswordRequest updatePasswordRequest, HttpServletRequest request);
+
+    /**
+     * 分页条件
+     * @param searchRequest
+     * @return
+     */
+    QueryWrapper<User> getQueryWrapper(UserSearchRequest searchRequest);
 }
